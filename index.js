@@ -1,24 +1,12 @@
 // Functions
-import { fetchData } from './functions.js';
+import { fetchData, fetchDataWithAxios } from './functions.js';
 
 const machinesTable = document.getElementById('machines');
 const productsTable = document.getElementById('products');
 const detailsTable = document.getElementById('details');
 
 const render = async () => {
-  // create a fake api call via axios library to the promise function fetchData
-  const fetchDataWithAxios = await axios
-    .get('https://jsonplaceholder.typicode.com/todos/1')
-    .then((_response) => {
-      return fetchData();
-    })
-    .then((data) => {
-      return data;
-    })
-    .catch((error) => {
-      console.log('error', error);
-    });
-
+  
   let database = fetchDataWithAxios;
 
   let groups = database?.data?.groups || [];
@@ -96,21 +84,19 @@ const render = async () => {
             <label for="machine-group-id">Group ID</label>
             <select class="form-control" id="machine-group-id">
               ${groups
-                ?.map(
-                  (group) => `
-                  <option value="${group?.id}" ${
-                    group?.id === machine?.groupId ? 'selected' : ''
-                  }>${group?.name}</option>
+          ?.map(
+            (group) => `
+                  <option value="${group?.id}" ${group?.id === machine?.groupId ? 'selected' : ''
+              }>${group?.name}</option>
                 `
-                )
-                .join('')}
+          )
+          .join('')}
             </select>
           </div>
           <div class="form-group">
             <label for="machine-description">Description</label>
-            <input type="text" class="form-control" id="machine-description" value="${
-              machine?.description
-            }" />
+            <input type="text" class="form-control" id="machine-description" value="${machine?.description
+        }" />
           </div>
         </form>
       `,
@@ -196,12 +182,12 @@ const render = async () => {
             <label for="machine-group-id">Group ID</label>
             <select class="form-control" id="machine-group-id">
               ${groups
-                ?.map(
-                  (group) => `
+          ?.map(
+            (group) => `
                   <option value="${group?.id}">${group?.name}</option>
                 `
-                )
-                .join('')}
+          )
+          .join('')}
             </select>
           </div>
           <div class="form-group">
@@ -318,23 +304,21 @@ const render = async () => {
             <label for="product-machine">Machine</label>
             <select class="form-control" id="product-machine">
               ${groups
-                ?.map((group) => group?.machines)
-                .flat()
-                .map(
-                  (machine) => `
-                  <option value="${machine?.id}" ${
-                    machine?.id === product?.machine ? 'selected' : ''
-                  }>${machine?.name}</option>
+          ?.map((group) => group?.machines)
+          .flat()
+          .map(
+            (machine) => `
+                  <option value="${machine?.id}" ${machine?.id === product?.machine ? 'selected' : ''
+              }>${machine?.name}</option>
                 `
-                )
-                .join('')}
+          )
+          .join('')}
             </select>
           </div>
           <div class="form-group">
             <label for="product-description">Description</label>
-            <input type="text" class="form-control" id="product-description" value="${
-              product?.description
-            }" />
+            <input type="text" class="form-control" id="product-description" value="${product?.description
+        }" />
           </div>
         </form>
       `,
@@ -431,14 +415,14 @@ const render = async () => {
             <label for="product-machine">Machine</label>
             <select class="form-control" id="product-machine">
               ${groups
-                ?.map((group) => group?.machines)
-                .flat()
-                .map(
-                  (machine) => `
+          ?.map((group) => group?.machines)
+          .flat()
+          .map(
+            (machine) => `
                   <option value="${machine?.id}">${machine?.name}</option>
                 `
-                )
-                .join('')}
+          )
+          .join('')}
             </select>
           </div>
           <div class="form-group">

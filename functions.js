@@ -13,4 +13,18 @@ const fetchData = () => {
   return res;
 };
 
-export { fetchData };
+// create a fake api call via axios library to the promise function fetchData
+const fetchDataWithAxios = await axios
+.get('https://jsonplaceholder.typicode.com/todos/1')
+.then((_response) => {
+  return fetchData();
+})
+.then((data) => {
+  return data;
+})
+.catch((error) => {
+  console.log('error', error);
+});
+export { fetchData, fetchDataWithAxios  };
+
+
